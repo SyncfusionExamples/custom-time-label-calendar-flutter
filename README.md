@@ -34,6 +34,7 @@ body: Column(
   ],
 ),
 ```
+![time ruler size](http://www.syncfusion.com/uploads/user/kb/flut/flut-671/flut-671_img1.png)
 
 ## Step 3:
 Assign the custom time label text to the `timeFormat` property of the `TimeSlotViewSettings` along with that you can add any time format data for dynamic values.
@@ -56,3 +57,11 @@ body: Column(
   ],
 ),
 ```
+[View document in Syncfusion Flutter Knowledge base](https://www.syncfusion.com/kb/11008/how-to-customize-the-time-label-in-the-flutter-event-calendar-sfcalendar)
+
+Screenshots
+
+![day](http://www.syncfusion.com/uploads/user/kb/flut/flut-671/flut-671_img2.png)
+![week](http://www.syncfusion.com/uploads/user/kb/flut/flut-671/flut-671_img3.png)
+![workweek](http://www.syncfusion.com/uploads/user/kb/flut/flut-671/flut-671_img4.png)
+![timeline](http://www.syncfusion.com/uploads/user/kb/flut/flut-671/flut-671_img5.png)
