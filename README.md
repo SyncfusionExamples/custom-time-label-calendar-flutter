@@ -56,9 +56,9 @@ body: Column(
   ],
 ),
 ```
-[View document in Syncfusion Flutter Knowledge base](https://www.syncfusion.com/kb/11008/how-to-customize-the-time-label-in-the-flutter-event-calendar-sfcalendar)
+**[View document in Syncfusion Flutter Knowledge base](https://www.syncfusion.com/kb/11008/how-to-customize-the-time-label-in-the-flutter-event-calendar-sfcalendar)**
 
-Screenshots
+**Screenshots**
 
 ![day](http://www.syncfusion.com/uploads/user/kb/flut/flut-671/flut-671_img2.png)
 ![week](http://www.syncfusion.com/uploads/user/kb/flut/flut-671/flut-671_img3.png)
