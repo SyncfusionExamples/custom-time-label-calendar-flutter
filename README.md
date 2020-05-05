@@ -1,6 +1,5 @@
 # How to customize the time label in the Flutter event calendar (SfCalendar)?
 
-
 In the flutter event calendar, you can customize the time label text using the `timeFormat` property of `TimeSlotViewSettings` in `SfCalendar`.
 
 ## Step 1:
