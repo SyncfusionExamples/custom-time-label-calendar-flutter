@@ -60,7 +60,7 @@ body: Column(
 
 **Screenshots**
 
-![day](http://www.syncfusion.com/uploads/user/kb/flut/flut-671/flut-671_img2.png)
-![week](http://www.syncfusion.com/uploads/user/kb/flut/flut-671/flut-671_img3.png)
-![workweek](http://www.syncfusion.com/uploads/user/kb/flut/flut-671/flut-671_img4.png)
-![timeline](http://www.syncfusion.com/uploads/user/kb/flut/flut-671/flut-671_img5.png)
+<img alt="day" src="http://www.syncfusion.com/uploads/user/kb/flut/flut-671/flut-671_img2.png" width="250" height="400" />|
+<img alt="week" src="http://www.syncfusion.com/uploads/user/kb/flut/flut-671/flut-671_img3.png" width="250" height="400" />|
+<img alt="workweek" src="http://www.syncfusion.com/uploads/user/kb/flut/flut-671/flut-671_img4.png" width="250" height="400" />|
+<img alt="timeline" src="http://www.syncfusion.com/uploads/user/kb/flut/flut-671/flut-671_img5.png" width="250" height="400" />|
