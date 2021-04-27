@@ -22,131 +22,93 @@ class TimeLabel extends StatefulWidget {
   State<StatefulWidget> createState() => ScheduleExample();
 }
 
-List<String> colors = <String>[
-  'Pink',
-  'Blue',
-  'Wall Brown',
-  'Yellow',
-  'Default'
-];
-
-List<String> views = <String>[
-  'Day',
-  'Week',
-  'WorkWeek',
-  'Month',
-  'Timeline Day',
-  'Timeline Week',
-  'Timeline WorkWeek'
-];
-
 class ScheduleExample extends State<TimeLabel> {
-  CalendarView _calendarView;
-  String _customTimeLabelText;
-  Color headerColor, viewHeaderColor, calendarColor, defaultColor;
-
-  @override
-  void initState() {
-    _calendarView = CalendarView.week;
-    _customTimeLabelText='Cell';
-    super.initState();
-  }
+  List<String> _colors = <String>[
+    'Pink',
+    'Blue',
+    'Wall Brown',
+    'Yellow',
+    'Default'
+  ];
+  final CalendarController _controller = CalendarController();
+  Color? _headerColor, _viewHeaderColor, _calendarColor;
 
   @override
   Widget build(BuildContext context) {
-    return (
-        Scaffold(
-        appBar: AppBar(
-          actions: <Widget>[
-            PopupMenuButton<String>(
-              icon: Icon(Icons.color_lens),
-              itemBuilder: (BuildContext context) {
-                return colors.map((String choice) {
-                  return PopupMenuItem<String>(
-                    value: choice,
-                    child: Text(choice),
-                  );
-                }).toList();
-              },
-              onSelected: (String value) {
-                setState(() {
-                  if (value == 'Pink') {
-                    headerColor = const Color(0xFF09e8189);
-                    viewHeaderColor = const Color(0xFF0f3acb6);
-                    calendarColor = const Color(0xFF0ffe5d8);
-                  } else if (value == 'Blue') {
-                    headerColor = const Color(0xFF0007eff);
-                    viewHeaderColor = const Color(0xFF03aa4f6);
-                    calendarColor = const Color(0xFF0bae5ff);
-                  } else if (value == 'Wall Brown') {
-                    headerColor = const Color(0xFF0937c5d);
-                    viewHeaderColor = const Color(0xFF0e6d9b1);
-                    calendarColor = const Color(0xFF0d1d2d6);
-                  } else if (value == 'Yellow') {
-                    headerColor = const Color(0xFF0f7ed53);
-                    viewHeaderColor = const Color(0xFF0fff77f);
-                    calendarColor = const Color(0xFF0f7f2cc);
-                  } else if (value == 'Default') {
-                    headerColor = null;
-                    viewHeaderColor = null;
-                    calendarColor = null;
-                  }
-                });
-              },
-            ),
-          ],
-          backgroundColor: headerColor,
-          centerTitle: true,
-          titleSpacing: 60,
-          leading: PopupMenuButton<String>(
-            icon: Icon(Icons.calendar_today),
-            itemBuilder: (BuildContext context) => views.map((String choice) {
-              return PopupMenuItem<String>(
-                value: choice,
-                child: Text(choice),
-              );
-            }).toList(),
+    return (Scaffold(
+      appBar: AppBar(
+        actions: <Widget>[
+          PopupMenuButton<String>(
+            icon: Icon(Icons.color_lens),
+            itemBuilder: (BuildContext context) {
+              return _colors.map((String choice) {
+                return PopupMenuItem<String>(
+                  value: choice,
+                  child: Text(choice),
+                );
+              }).toList();
+            },
             onSelected: (String value) {
               setState(() {
-                if (value == 'Day') {
-                  _calendarView = CalendarView.day;
-                } else if (value == 'Week') {
-                  _calendarView = CalendarView.week;
-                } else if (value == 'WorkWeek') {
-                  _calendarView = CalendarView.workWeek;
-                } else if (value == 'Month') {
-                  _calendarView = CalendarView.month;
-                } else if (value == 'Timeline Day') {
-                  _calendarView = CalendarView.timelineDay;
-                } else if (value == 'Timeline Week') {
-                  _calendarView = CalendarView.timelineWeek;
-                } else if (value == 'Timeline WorkWeek') {
-                  _calendarView = CalendarView.timelineWorkWeek;
+                if (value == 'Pink') {
+                  _headerColor = const Color(0xFF09e8189);
+                  _viewHeaderColor = const Color(0xFF0f3acb6);
+                  _calendarColor = const Color(0xFF0ffe5d8);
+                } else if (value == 'Blue') {
+                  _headerColor = const Color(0xFF0007eff);
+                  _viewHeaderColor = const Color(0xFF03aa4f6);
+                  _calendarColor = const Color(0xFF0bae5ff);
+                } else if (value == 'Wall Brown') {
+                  _headerColor = const Color(0xFF0937c5d);
+                  _viewHeaderColor = const Color(0xFF0e6d9b1);
+                  _calendarColor = const Color(0xFF0d1d2d6);
+                } else if (value == 'Yellow') {
+                  _headerColor = const Color(0xFF0f7ed53);
+                  _viewHeaderColor = const Color(0xFF0fff77f);
+                  _calendarColor = const Color(0xFF0f7f2cc);
+                } else if (value == 'Default') {
+                  _headerColor = null;
+                  _viewHeaderColor = null;
+                  _calendarColor = null;
                 }
               });
             },
           ),
-        ),
-        body: Column(
-          children: <Widget>[
-            Expanded(
-              child: SfCalendar(
-                viewHeaderStyle:
-                ViewHeaderStyle(backgroundColor: viewHeaderColor),
-                backgroundColor: calendarColor,
-                view: _calendarView,
-                dataSource: getCalendarDataSource(),
-                timeSlotViewSettings: TimeSlotViewSettings(
+        ],
+        backgroundColor: _headerColor,
+        centerTitle: true,
+        titleSpacing: 60,
+      ),
+      body: Column(
+        children: <Widget>[
+          Expanded(
+            child: SfCalendar(
+              viewHeaderStyle:
+                  ViewHeaderStyle(backgroundColor: _viewHeaderColor),
+              backgroundColor: _calendarColor,
+              view: CalendarView.week,
+              controller: _controller,
+              allowedViews: [
+                CalendarView.day,
+                CalendarView.week,
+                CalendarView.workWeek,
+                CalendarView.month,
+                CalendarView.timelineDay,
+                CalendarView.timelineWeek,
+                CalendarView.timelineWorkWeek,
+              ],
+              dataSource: getCalendarDataSource(),
+              timeSlotViewSettings: TimeSlotViewSettings(
                   timelineAppointmentHeight: 500,
                   timeRulerSize: 80,
-                  timeFormat: _customTimeLabelText + ' hh',
-                    timeTextStyle: TextStyle(color: Colors.black,fontWeight: FontWeight.bold)
-                ),
-              ),
+                  timeFormat: 'Cell' + ' hh',
+                  timeTextStyle: TextStyle(
+                      color: Colors.black, fontWeight: FontWeight.bold)),
             ),
-          ],
-        ),
-      ));
+          ),
+        ],
+      ),
+    ));
   }
 
   _DataSource getCalendarDataSource() {
@@ -171,7 +133,7 @@ class ScheduleExample extends State<TimeLabel> {
     ));
     appointments.add(Appointment(
       startTime: DateTime.now().add(const Duration(hours: 6, days: 4)),
-      endTime: DateTime.now().add(const Duration(hours: 7, days:4)),
+      endTime: DateTime.now().add(const Duration(hours: 7, days: 4)),
       subject: 'Booked',
       color: Colors.red,
     ));
@@ -200,8 +162,12 @@ class ScheduleExample extends State<TimeLabel> {
       color: Colors.red,
     ));
     appointments.add(Appointment(
-      startTime: DateTime.now().add(const Duration(hours: 12,)),
-      endTime: DateTime.now().add(const Duration(hours: 13, )),
+      startTime: DateTime.now().add(const Duration(
+        hours: 12,
+      )),
+      endTime: DateTime.now().add(const Duration(
+        hours: 13,
+      )),
       subject: 'Booked',
       color: Colors.red,
     ));
@@ -245,11 +211,9 @@ class ScheduleExample extends State<TimeLabel> {
     return _DataSource(appointments);
   }
 }
+
 class _DataSource extends CalendarDataSource {
-  _DataSource(this.source);
-
-  List<Appointment> source;
-
-  @override
-  List<dynamic> get appointments => source;
+  _DataSource(List<Appointment> source){
+    appointments = source;
+  }
 }
