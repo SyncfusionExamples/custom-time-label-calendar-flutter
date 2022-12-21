@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:flutter/widgets.dart';
-import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
-void main() => runApp(TimeLabelCustomization());
+void main() => runApp(const TimeLabelCustomization());
 
 class TimeLabelCustomization extends StatelessWidget {
+  const TimeLabelCustomization({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: TimeLabel(),
     );
@@ -18,6 +16,8 @@ class TimeLabelCustomization extends StatelessWidget {
 }
 
 class TimeLabel extends StatefulWidget {
+  const TimeLabel({super.key});
+
   @override
   State<StatefulWidget> createState() => ScheduleExample();
 }
@@ -39,7 +39,7 @@ class ScheduleExample extends State<TimeLabel> {
       appBar: AppBar(
         actions: <Widget>[
           PopupMenuButton<String>(
-            icon: Icon(Icons.color_lens),
+            icon: const Icon(Icons.color_lens),
             itemBuilder: (BuildContext context) {
               return _colors.map((String choice) {
                 return PopupMenuItem<String>(
@@ -84,11 +84,11 @@ class ScheduleExample extends State<TimeLabel> {
           Expanded(
             child: SfCalendar(
               viewHeaderStyle:
-                  ViewHeaderStyle(backgroundColor: _viewHeaderColor),
+              ViewHeaderStyle(backgroundColor: _viewHeaderColor),
               backgroundColor: _calendarColor,
               view: CalendarView.week,
               controller: _controller,
-              allowedViews: [
+              allowedViews: const [
                 CalendarView.day,
                 CalendarView.week,
                 CalendarView.workWeek,
@@ -98,7 +98,7 @@ class ScheduleExample extends State<TimeLabel> {
                 CalendarView.timelineWorkWeek,
               ],
               dataSource: getCalendarDataSource(),
-              timeSlotViewSettings: TimeSlotViewSettings(
+              timeSlotViewSettings: const TimeSlotViewSettings(
                   timelineAppointmentHeight: 500,
                   timeRulerSize: 80,
                   timeFormat: 'Cell' + ' hh',
